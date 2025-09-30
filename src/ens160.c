@@ -95,6 +95,8 @@ ENS160_status_t ENS160_init(void) {
     ENS160_status_t status = ENS160_SUCCESS;
     // Init hardware interface.
     status = ENS160_HW_init();
+    if (status != ENS160_SUCCESS) goto errors;
+errors:
     return status;
 }
 
@@ -104,6 +106,27 @@ ENS160_status_t ENS160_de_init(void) {
     ENS160_status_t status = ENS160_SUCCESS;
     // Release hardware interface.
     status = ENS160_HW_de_init();
+    if (status != ENS160_SUCCESS) goto errors;
+errors:
+    return status;
+}
+
+/*******************************************************************/
+ENS160_status_t ENS160_get_device_status(uint8_t i2c_address, ENS160_device_status_t* device_status) {
+    // Local variables.
+    ENS160_status_t status = ENS160_SUCCESS;
+    uint8_t reg_value = 0;
+    // Check parameter.
+    if (device_status == NULL) {
+        status = ENS160_ERROR_NULL_PARAMETER;
+        goto errors;
+    }
+    // Read register.
+    status = _ENS160_read_register(i2c_address, ENS160_REGISTER_DEVICE_STATUS, &reg_value);
+    if (status != ENS160_SUCCESS) goto errors;
+    // Update output.
+    (device_status->all) = reg_value;
+errors:
     return status;
 }
 

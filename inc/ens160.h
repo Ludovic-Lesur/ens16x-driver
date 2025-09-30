@@ -34,6 +34,22 @@ typedef enum {
 
 #ifndef ENS160_DRIVER_DISABLE
 
+/*!******************************************************************
+ * \enum ENS160_device_status_t
+ * \brief ENS160 chip status byte.
+ *******************************************************************/
+typedef union {
+    uint8_t all;
+    struct {
+        unsigned statas :1;
+        unsigned stater :1;
+        unsigned reserved :2;
+        unsigned validity_flag :2;
+        unsigned newdat :1;
+        unsigned newgpr :1;
+    } __attribute__((scalar_storage_order("big-endian"))) __attribute__((packed));
+} ENS160_device_status_t;
+
 /*** ENS160 functions ***/
 
 /*!******************************************************************
@@ -53,6 +69,15 @@ ENS160_status_t ENS160_init(void);
  * \retval      Function execution status.
  *******************************************************************/
 ENS160_status_t ENS160_de_init(void);
+
+/*!******************************************************************
+ * \fn ENS160_status_t ENS160_get_device_status(uint8_t i2c_address, ENS160_device_status_t* device_status)
+ * \brief Get ENS160 chip status.
+ * \param[in]   i2c_address: I2C address of the sensor.
+ * \param[out]  device_status: Pointer to byte that will contain the current chip status.
+ * \retval      Function execution status.
+ *******************************************************************/
+ENS160_status_t ENS160_get_device_status(uint8_t i2c_address, ENS160_device_status_t* device_status);
 
 /*!******************************************************************
  * \fn ENS160_status_t ENS160_start_acquisition(uint8_t i2c_address, int32_t temperature_degrees, int32_t humidity_percent)
