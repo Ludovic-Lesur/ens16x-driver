@@ -107,16 +107,16 @@ ENS16X_status_t ENS16X_de_init(void);
 ENS16X_status_t ENS16X_get_device_status(uint8_t i2c_address, ENS16X_device_status_t* device_status);
 
 /*!******************************************************************
- * \fn ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mode_t sensing_mode, int32_t temperature_degrees, int32_t humidity_percent)
+ * \fn ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mode_t sensing_mode, int32_t temperature_tenth_degrees, int32_t humidity_percent)
  * \brief Start air quality measurements.
  * \param[in]   i2c_address: I2C address of the sensor.
  * \param[in]   sensing_mode: Gas sensing mode to select.
- * \param[in]   temperature_degrees: Ambient temperature in degrees.
+ * \param[in]   temperature_tenth_degrees: Ambient temperature in 1/10 Celsius degrees.
  * \param[in]   humidity_percent: Ambient relative humidity in percent.
  * \param[out]  none
  * \retval      Function execution status.
  *******************************************************************/
-ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mode_t sensing_mode, int32_t temperature_degrees, int32_t humidity_percent);
+ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mode_t sensing_mode, int32_t temperature_tenth_degrees, int32_t humidity_percent);
 
 /*!******************************************************************
  * \fn ENS16X_status_t ENS16X_stop_acquisition(uint8_t i2c_address)
