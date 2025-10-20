@@ -21,9 +21,9 @@
 
 #define ENS16X_TEMP_IN_MIN                  (-400)
 #define ENS16X_TEMP_IN_MAX                  850
-#define ENS16X_TEMP_IN_FACTOR               10.0
-#define ENS16X_TEMP_IN_SLOPE                64.0
-#define ENS16X_TEMP_IN_KELVIN_OFFSET        273.15
+#define ENS16X_TEMP_IN_FACTOR               10
+#define ENS16X_TEMP_IN_SLOPE                64
+#define ENS16X_TEMP_IN_OFFSET               174816
 
 #define ENS16X_RH_IN_MIN                    0
 #define ENS16X_RH_IN_MAX                    100
@@ -143,7 +143,6 @@ ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mod
     // Local variables.
     ENS16X_status_t status = ENS16X_SUCCESS;
     ENS16X_operating_mode_t op_mode = ENS16X_OPERATING_MODE_DEEP_SLEEP;
-    float tmp_float = 0.0;
     int32_t temp_in = 0;
     int32_t rh_in = 0;
     // Check parameters.
@@ -156,8 +155,7 @@ ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mod
         goto errors;
     }
     // Compute registers value.
-    tmp_float = (((((float) temperature_tenth_degrees) / ((float) ENS16X_TEMP_IN_FACTOR)) + ((float) ENS16X_TEMP_IN_KELVIN_OFFSET)) * ((float) ENS16X_TEMP_IN_SLOPE));
-    temp_in = (int32_t) (tmp_float);
+    temp_in = (((temperature_tenth_degrees * ENS16X_TEMP_IN_SLOPE) + ENS16X_TEMP_IN_OFFSET) / (ENS16X_TEMP_IN_FACTOR));
     rh_in = (humidity_percent * ENS16X_RH_IN_SLOPE);
     // Wake-up sensor.
     switch (sensing_mode) {
