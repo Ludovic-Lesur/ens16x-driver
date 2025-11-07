@@ -36,6 +36,17 @@ typedef enum {
 #ifndef ENS16X_DRIVER_DISABLE
 
 /*!******************************************************************
+ * \enum ENS16X_validity_flag_t
+ * \brief ENS16X validity flag values mapping.
+ *******************************************************************/
+typedef enum {
+    ENS16X_VALIDITY_FLAG_NORMAL_OPERATION = 0b00,
+    ENS16X_VALIDITY_FLAG_WARM_UP_PHASE = 0b01,
+    ENS16X_VALIDITY_FLAG_INITIAL_STARTUP_PHASE = 0b10,
+    ENS16X_VALIDITY_FLAG_INVALID_OUTPUT = 0b11
+} ENS16X_validity_flag_t;
+
+/*!******************************************************************
  * \enum ENS16X_device_status_t
  * \brief ENS16X chip status byte.
  *******************************************************************/
