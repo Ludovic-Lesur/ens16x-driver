@@ -13,6 +13,7 @@ Here is the versions compatibility table:
 
 | **ens16x-driver** | **embedded-utils** |
 |:---:|:---:|
+| [sw4.1](https://github.com/Ludovic-Lesur/ens16x-driver/releases/tag/sw4.1) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
 | [sw4.0](https://github.com/Ludovic-Lesur/ens16x-driver/releases/tag/sw4.0) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
 | [sw3.2](https://github.com/Ludovic-Lesur/ens16x-driver/releases/tag/sw3.2) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
 | [sw3.1](https://github.com/Ludovic-Lesur/ens16x-driver/releases/tag/sw3.1) | >= [sw5.0](https://github.com/Ludovic-Lesur/embedded-utils/releases/tag/sw5.0) |
