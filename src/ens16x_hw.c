@@ -56,4 +56,13 @@ ENS16X_status_t __attribute__((weak)) ENS16X_HW_i2c_read(uint8_t i2c_address, ui
     return status;
 }
 
+/*******************************************************************/
+ENS16X_status_t __attribute__((weak)) ENS16X_HW_delay_milliseconds(uint32_t delay_ms) {
+    // Local variables.
+    ENS16X_status_t status = ENS16X_SUCCESS;
+    /* To be implemented */
+    UNUSED(delay_ms);
+    return status;
+}
+
 #endif /* ENS16X_DRIVER_DISABLE */

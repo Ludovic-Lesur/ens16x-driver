@@ -58,6 +58,15 @@ ENS16X_status_t ENS16X_HW_i2c_write(uint8_t i2c_address, uint8_t* data, uint8_t 
  *******************************************************************/
 ENS16X_status_t ENS16X_HW_i2c_read(uint8_t i2c_address, uint8_t* data, uint8_t data_size_bytes);
 
+/*!******************************************************************
+ * \fn ENS16X_status_t ENS16X_HW_delay_milliseconds(uint32_t delay_ms)
+ * \brief Delay function.
+ * \param[in]   delay_ms: Delay to wait in ms.
+ * \param[out]  none
+ * \retval      Function execution status.
+ *******************************************************************/
+ENS16X_status_t ENS16X_HW_delay_milliseconds(uint32_t delay_ms);
+
 #endif /* ENS16X_DRIVER_DISABLE */
 
 #endif /* __ENS16X_HW_H__ */
