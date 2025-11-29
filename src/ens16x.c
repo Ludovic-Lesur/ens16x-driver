@@ -17,7 +17,6 @@
 
 /*** ENS16X local macros ***/
 
-#define ENS16X_RESET_DELAY_MS               100
 #define ENS16X_IDLE_DELAY_MS                10
 #define ENS16X_COMPENSATION_DELAY_MS        10
 
@@ -178,11 +177,6 @@ ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mod
         status = ENS16X_ERROR_SENSING_MODE;
         goto errors;
     }
-    // Reset sensor.
-    status = _ENS16X_write_register(i2c_address, ENS16X_REGISTER_OPMODE, ENS16X_OPERATING_MODE_RESET);
-    if (status != ENS16X_SUCCESS) goto errors;
-    status = ENS16X_HW_delay_milliseconds(ENS16X_RESET_DELAY_MS);
-    if (status != ENS16X_SUCCESS) goto errors;
     // Wake-up sensor.
     status = _ENS16X_write_register(i2c_address, ENS16X_REGISTER_OPMODE, ENS16X_OPERATING_MODE_IDLE);
     if (status != ENS16X_SUCCESS) goto errors;
