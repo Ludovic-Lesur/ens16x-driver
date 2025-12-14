@@ -24,7 +24,7 @@ typedef enum {
     // Driver errors.
     ENS16X_SUCCESS = 0,
     ENS16X_ERROR_NULL_PARAMETER,
-    ENS16X_ERROR_SENSING_MODE,
+    ENS16X_ERROR_OPERATING_MODE,
     ENS16X_ERROR_INPUT_TEMPERATURE,
     ENS16X_ERROR_INPUT_HUMIDITY,
     // Low level drivers errors.
@@ -35,6 +35,18 @@ typedef enum {
 } ENS16X_status_t;
 
 #ifndef ENS16X_DRIVER_DISABLE
+
+/*******************************************************************/
+typedef enum {
+    ENS16X_OPERATING_MODE_DEEP_SLEEP = 0x00,
+    ENS16X_OPERATING_MODE_IDLE = 0x01,
+    ENS16X_OPERATING_MODE_STANDARD = 0x02,
+#ifdef ENS16X_DRIVER_DEVICE_ENS161
+    ENS16X_OPERATING_MODE_LOW_POWER = 0x03,
+    ENS16X_OPERATING_MODE_ULTRA_LOW_POWER = 0x04,
+#endif
+    ENS16X_OPERATING_MODE_RESET = 0xF0
+} ENS16X_operating_mode_t;
 
 /*!******************************************************************
  * \enum ENS16X_validity_flag_t
@@ -62,19 +74,6 @@ typedef union {
         unsigned newgpr :1;
     } __attribute__((scalar_storage_order("big-endian"))) __attribute__((packed));
 } ENS16X_device_status_t;
-
-/*!******************************************************************
- * \enum ENS16X_device_status_t
- * \brief ENS16X chip status byte.
- *******************************************************************/
-typedef enum {
-    ENS16X_SENSING_MODE_STANDARD = 0,
-#ifdef ENS16X_DRIVER_DEVICE_ENS161
-    ENS16X_SENSING_MODE_LOW_POWER,
-    ENS16X_SENSING_MODE_ULTRA_LOW_POWER,
-#endif
-    ENS16X_SENSING_MODE_LAST
-} ENS16X_sensing_mode_t;
 
 /*!******************************************************************
  * \enum ENS16X_air_quality_data_t
@@ -119,25 +118,25 @@ ENS16X_status_t ENS16X_de_init(void);
 ENS16X_status_t ENS16X_get_device_status(uint8_t i2c_address, ENS16X_device_status_t* device_status);
 
 /*!******************************************************************
- * \fn ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mode_t sensing_mode, int32_t temperature_tenth_degrees, int32_t humidity_percent)
- * \brief Start air quality measurements.
+ * \fn ENS16X_status_t ENS16X_set_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t operating_mode)
+ * \brief Set sensor state.
  * \param[in]   i2c_address: I2C address of the sensor.
- * \param[in]   sensing_mode: Gas sensing mode to select.
+ * \param[in]   operating_mode: operating mode to select.
+ * \param[out]  none
+ * \retval      Function execution status.
+ *******************************************************************/
+ENS16X_status_t ENS16X_set_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t operating_mode);
+
+/*!******************************************************************
+ * \fn ENS16X_status_t ENS16X_set_temperature_humidity(uint8_t i2c_address, int32_t temperature_tenth_degrees, int32_t humidity_percent)
+ * \brief Write temperature and humidity compensation.
+ * \param[in]   i2c_address: I2C address of the sensor.
  * \param[in]   temperature_tenth_degrees: Ambient temperature in 1/10 Celsius degrees.
  * \param[in]   humidity_percent: Ambient relative humidity in percent.
  * \param[out]  none
  * \retval      Function execution status.
  *******************************************************************/
-ENS16X_status_t ENS16X_start_acquisition(uint8_t i2c_address, ENS16X_sensing_mode_t sensing_mode, int32_t temperature_tenth_degrees, int32_t humidity_percent);
-
-/*!******************************************************************
- * \fn ENS16X_status_t ENS16X_stop_acquisition(uint8_t i2c_address)
- * \brief Stop air quality measurements.
- * \param[in]   i2c_address: I2C address of the sensor.
- * \param[out]  none
- * \retval      Function execution status.
- *******************************************************************/
-ENS16X_status_t ENS16X_stop_acquisition(uint8_t i2c_address);
+ENS16X_status_t ENS16X_set_temperature_humidity(uint8_t i2c_address, int32_t temperature_tenth_degrees, int32_t humidity_percent);
 
 /*!******************************************************************
  * \fn ENS16X_status_t ENS16X_read_air_quality(uint8_t i2c_address, ENS16X_air_quality_data_t* air_quality_data)
