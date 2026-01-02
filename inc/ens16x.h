@@ -118,6 +118,15 @@ ENS16X_status_t ENS16X_de_init(void);
 ENS16X_status_t ENS16X_get_device_status(uint8_t i2c_address, ENS16X_device_status_t* device_status);
 
 /*!******************************************************************
+ * \fn ENS16X_status_t ENS16X_get_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t* operating_mode)
+ * \brief Read sensor state.
+ * \param[in]   i2c_address: I2C address of the sensor.
+ * \param[out]  operating_mode: Pointer to the current operating off the sensor.
+ * \retval      Function execution status.
+ *******************************************************************/
+ENS16X_status_t ENS16X_get_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t* operating_mode);
+
+/*!******************************************************************
  * \fn ENS16X_status_t ENS16X_set_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t operating_mode)
  * \brief Set sensor state.
  * \param[in]   i2c_address: I2C address of the sensor.

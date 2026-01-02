@@ -129,6 +129,25 @@ errors:
 }
 
 /*******************************************************************/
+ENS16X_status_t ENS16X_get_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t* operating_mode) {
+    // Local variables.
+    ENS16X_status_t status = ENS16X_SUCCESS;
+    uint8_t reg_value = 0;
+    // Check parameter.
+    if (operating_mode == NULL) {
+        status = ENS16X_ERROR_NULL_PARAMETER;
+        goto errors;
+    }
+    // Read register.
+    status = _ENS16X_read_register(i2c_address, ENS16X_REGISTER_OPMODE, &reg_value);
+    if (status != ENS16X_SUCCESS) goto errors;
+    // Update output.
+    (*operating_mode) = ((ENS16X_operating_mode_t) reg_value);
+errors:
+    return status;
+}
+
+/*******************************************************************/
 ENS16X_status_t ENS16X_set_operating_mode(uint8_t i2c_address, ENS16X_operating_mode_t operating_mode) {
     // Local variables.
     ENS16X_status_t status = ENS16X_SUCCESS;
