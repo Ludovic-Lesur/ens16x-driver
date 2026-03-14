@@ -33,3 +33,21 @@ Here is the versions compatibility table:
 | `ENS16X_DRIVER_I2C_ERROR_BASE_LAST` | `<value>` | Last error base of the low level I2C driver. |
 | `ENS16X_DRIVER_DELAY_ERROR_BASE_LAST` | `<value>` | Last error base of the low level delay driver. |
 | `ENS16X_DRIVER_DEVICE_ENS161` | `defined` / `undefined` | Select ENS161 chip if defined, ENS160 otherwise. |
+
+# Build
+
+A static library can be compiled by command line with `cmake`.
+
+```bash
+mkdir build
+cd build
+cmake -DCMAKE_TOOLCHAIN_FILE="<toolchain_file_path>" \
+      -DTOOLCHAIN_PATH="<arm-none-eabi-gcc_path>" \
+      -DTYPES_PATH="<types_file_path>" \
+      -DEMBEDDED_UTILS_PATH="<embedded-utils_path>" \
+      -DENS16X_DRIVER_I2C_ERROR_BASE_LAST=0 \
+      -DENS16X_DRIVER_DELAY_ERROR_BASE_LAST=0 \
+      -DENS16X_DRIVER_DEVICE_ENS161=ON \
+      -G "Unix Makefiles" ..
+make all
+```
