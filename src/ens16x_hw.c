@@ -20,7 +20,7 @@
 /*******************************************************************/
 ENS16X_status_t __attribute__((weak)) ENS16X_HW_init(void) {
     // Local variables.
-    ENS16X_status_t status = ENS16X_SUCCESS;
+    ENS16X_status_t status = ENS16X_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     return status;
 }
@@ -28,7 +28,7 @@ ENS16X_status_t __attribute__((weak)) ENS16X_HW_init(void) {
 /*******************************************************************/
 ENS16X_status_t __attribute__((weak)) ENS16X_HW_de_init(void) {
     // Local variables.
-    ENS16X_status_t status = ENS16X_SUCCESS;
+    ENS16X_status_t status = ENS16X_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     return status;
 }
@@ -36,7 +36,7 @@ ENS16X_status_t __attribute__((weak)) ENS16X_HW_de_init(void) {
 /*******************************************************************/
 ENS16X_status_t __attribute__((weak)) ENS16X_HW_i2c_write(uint8_t i2c_address, uint8_t* data, uint8_t data_size_bytes, uint8_t stop_flag) {
     // Local variables.
-    ENS16X_status_t status = ENS16X_SUCCESS;
+    ENS16X_status_t status = ENS16X_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     UNUSED(i2c_address);
     UNUSED(data);
@@ -48,7 +48,7 @@ ENS16X_status_t __attribute__((weak)) ENS16X_HW_i2c_write(uint8_t i2c_address, u
 /*******************************************************************/
 ENS16X_status_t __attribute__((weak)) ENS16X_HW_i2c_read(uint8_t i2c_address, uint8_t* data, uint8_t data_size_bytes) {
     // Local variables.
-    ENS16X_status_t status = ENS16X_SUCCESS;
+    ENS16X_status_t status = ENS16X_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     UNUSED(i2c_address);
     UNUSED(data);
@@ -59,7 +59,7 @@ ENS16X_status_t __attribute__((weak)) ENS16X_HW_i2c_read(uint8_t i2c_address, ui
 /*******************************************************************/
 ENS16X_status_t __attribute__((weak)) ENS16X_HW_delay_milliseconds(uint32_t delay_ms) {
     // Local variables.
-    ENS16X_status_t status = ENS16X_SUCCESS;
+    ENS16X_status_t status = ENS16X_ERROR_HW_FUNCTION_NOT_IMPLEMENTED;
     /* To be implemented */
     UNUSED(delay_ms);
     return status;
