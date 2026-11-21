@@ -30,7 +30,7 @@ if(${BUILD_MODE} STREQUAL STATIC)
     endmacro()
     
     # Compilation flags.
-    add_compilation_flag(ENS16X_DRIVERS_DISABLE "Disable the ENS16X driver." OFF)
+    add_compilation_flag(ENS16X_DRIVER_DISABLE "Disable the ENS16X driver." OFF)
     add_compilation_flag(ENS16X_DRIVER_I2C_ERROR_BASE_LAST "Last error base of the low level I2C driver." 0)
     add_compilation_flag(ENS16X_DRIVER_DELAY_ERROR_BASE_LAST "Last error base of the low level delay driver." 0)
     add_compilation_flag(ENS16X_DRIVER_DEVICE_ENS161 "Select ENS161 chip if defined, ENS160 otherwise." ON)
